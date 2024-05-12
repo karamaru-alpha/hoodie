@@ -1,4 +1,4 @@
-name: Pull Request for GoLang code
+name: Pull request for Go
 
 on:
   pull_request:
