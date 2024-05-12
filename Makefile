@@ -6,6 +6,7 @@ export
 install:
 	go mod download
 	go install golang.org/x/tools/cmd/goimports@v0.21.0
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.58.0
 
 .PHONY: buf-gen
 buf-gen:
@@ -20,3 +21,7 @@ fmt:
 .PHONY: run-api
 run-api:
 	go run cmd/api/main.go
+
+.PHONY: lint
+lint:
+	golangci-lint run -v cmd/... pkg/... config/...
