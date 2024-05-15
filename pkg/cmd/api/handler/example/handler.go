@@ -6,8 +6,8 @@ import (
 	"connectrpc.com/connect"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	"github.com/karamaru-alpha/hoodie/pkg/pb/rpc/api"
-	"github.com/karamaru-alpha/hoodie/pkg/pb/rpc/api/apiconnect"
+	"github.com/karamaru-alpha/days/pkg/pb/rpc/api"
+	"github.com/karamaru-alpha/days/pkg/pb/rpc/api/apiconnect"
 )
 
 type handler struct{}

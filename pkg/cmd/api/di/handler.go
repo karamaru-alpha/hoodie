@@ -6,8 +6,8 @@ import (
 	"connectrpc.com/connect"
 	"go.uber.org/fx"
 
-	"github.com/karamaru-alpha/hoodie/pkg/cmd/api/handler/example"
-	"github.com/karamaru-alpha/hoodie/pkg/pb/rpc/api/apiconnect"
+	"github.com/karamaru-alpha/days/pkg/cmd/api/handler/example"
+	"github.com/karamaru-alpha/days/pkg/pb/rpc/api/apiconnect"
 )
 
 var handlerSet = fx.Provide(

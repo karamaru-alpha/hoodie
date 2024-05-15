@@ -1,4 +1,4 @@
-package herrors
+package derrors
 
 import (
 	"errors"
@@ -17,8 +17,8 @@ type Error interface {
 	SetValues(valueMap map[string]any) Error
 }
 
-// herror hoodie's custom error
-type herror struct {
+// derror days's custom error
+type derror struct {
 	msg      string
 	stack    *stack
 	pattern  ErrorPattern
@@ -29,7 +29,7 @@ type herror struct {
 type valueMap map[string]any
 
 func New(pattern ErrorPattern, msg string) Error {
-	return &herror{
+	return &derror{
 		msg:     msg,
 		stack:   callers(),
 		pattern: pattern,
@@ -38,14 +38,14 @@ func New(pattern ErrorPattern, msg string) Error {
 
 func Wrap(err error, pattern ErrorPattern, msg string) Error {
 	var s *stack
-	var e *herror
+	var e *derror
 	if errors.As(err, &e) {
 		s = caller()
 	} else {
 		s = callers()
 	}
 
-	return &herror{
+	return &derror{
 		msg:     msg,
 		stack:   s,
 		pattern: pattern,
@@ -54,22 +54,22 @@ func Wrap(err error, pattern ErrorPattern, msg string) Error {
 }
 
 func As(err error) (Error, bool) {
-	var herr *herror
+	var herr *derror
 	if errors.As(err, &herr) {
 		return herr, true
 	}
 	return herr, false
 }
 
-func (e *herror) Error() string {
+func (e *derror) Error() string {
 	return fmt.Sprintf("%s: %s%s", e.pattern.ErrorCode, e.msg, e.valueMap.String())
 }
 
-func (e *herror) Unwrap() error {
+func (e *derror) Unwrap() error {
 	return e.err
 }
 
-func (e *herror) Format(s fmt.State, v rune) {
+func (e *derror) Format(s fmt.State, v rune) {
 	switch v {
 	case 'v':
 		if s.Flag('+') {
@@ -87,14 +87,14 @@ func (e *herror) Format(s fmt.State, v rune) {
 	}
 }
 
-func (e *herror) ErrorPattern() ErrorPattern {
+func (e *derror) ErrorPattern() ErrorPattern {
 	if e != nil {
 		return e.pattern
 	}
 	return Unknown
 }
 
-func (e *herror) SetValues(valueMap map[string]any) Error {
+func (e *derror) SetValues(valueMap map[string]any) Error {
 	e.valueMap = valueMap
 	return e
 }
