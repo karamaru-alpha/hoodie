@@ -15,7 +15,7 @@ buf-gen:
 
 .PHONY: fmt
 fmt:
-	goimports -w -local "github.com/karamaru-alpha/hoodie" pkg/
+	goimports -w -local "github.com/karamaru-alpha/days" pkg/
 	gofmt -s -w pkg/
 
 .PHONY: run-api

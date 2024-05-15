@@ -3,7 +3,7 @@ package main
 import (
 	"go.uber.org/fx"
 
-	"github.com/karamaru-alpha/hoodie/pkg/cmd/api/di"
+	"github.com/karamaru-alpha/days/pkg/cmd/api/di"
 )
 
 func main() {

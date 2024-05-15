@@ -4,7 +4,7 @@ package rpc.api;
 
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/karamaru-alpha/hoodie/pkg/pb/rpc/api";
+option go_package = "github.com/karamaru-alpha/days/pkg/pb/rpc/api";
 
 service Example {
   rpc Ping(google.protobuf.Empty) returns (ExamplePingResponse) {}

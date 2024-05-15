@@ -3,8 +3,8 @@ package api
 import (
 	"os"
 
-	"github.com/karamaru-alpha/hoodie/pkg/domain/config"
-	"github.com/karamaru-alpha/hoodie/pkg/herrors"
+	"github.com/karamaru-alpha/days/pkg/derrors"
+	"github.com/karamaru-alpha/days/pkg/domain/config"
 )
 
 func New() (*config.APIConfig, error) {
@@ -14,7 +14,7 @@ func New() (*config.APIConfig, error) {
 	case config.EnvLocal:
 		cfg = localAPIConfig
 	default:
-		return nil, herrors.New(herrors.Internal, "environment variable 'ENV' is invalid").SetValues(map[string]any{"ENV": env})
+		return nil, derrors.New(derrors.Internal, "environment variable 'ENV' is invalid").SetValues(map[string]any{"ENV": env})
 	}
 
 	return cfg, nil

@@ -2,7 +2,7 @@ version: v1
 plugins:
   - name: go
     out: .
-    opt: module=github.com/karamaru-alpha/hoodie
+    opt: module=github.com/karamaru-alpha/days
   - name: connect-go
     out: .
-    opt: module=github.com/karamaru-alpha/hoodie
+    opt: module=github.com/karamaru-alpha/days

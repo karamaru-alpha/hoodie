@@ -13,7 +13,7 @@ import (
 	connect "connectrpc.com/connect"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 
-	api "github.com/karamaru-alpha/hoodie/pkg/pb/rpc/api"
+	api "github.com/karamaru-alpha/days/pkg/pb/rpc/api"
 )
 
 // This is a compile-time assertion to ensure that this generated file and the connect package are

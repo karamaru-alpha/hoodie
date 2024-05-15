@@ -7,7 +7,7 @@ WORKDIR /tmp/buf
 RUN curl -sSL "https://github.com/bufbuild/buf/releases/download/v${BUF_VERSION}/buf-$(uname -s)-$(uname -m)" -o "/usr/local/bin/buf"
 RUN chmod +x "/usr/local/bin/buf"
 
-WORKDIR /usr/src/hoodie
+WORKDIR /usr/src/days
 COPY go.mod .
 COPY go.sum .
 RUN go mod download

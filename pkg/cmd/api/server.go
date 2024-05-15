@@ -12,8 +12,7 @@ import (
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 
-	"github.com/karamaru-alpha/hoodie/pkg/domain/config"
-	"github.com/karamaru-alpha/hoodie/pkg/herrors"
+	"github.com/karamaru-alpha/days/pkg/domain/config"
 )
 
 func NewServer(
@@ -33,7 +32,7 @@ func Serve(s *http.Server) (start, stop func(ctx context.Context) error) {
 	start = func(ctx context.Context) error {
 		ln, err := net.Listen("tcp", s.Addr)
 		if err != nil {
-			return herrors.Wrap(err, herrors.Internal, err.Error())
+			return derrors.Wrap(err, derrors.Internal, err.Error())
 		}
 
 		go func() {
@@ -46,7 +45,7 @@ func Serve(s *http.Server) (start, stop func(ctx context.Context) error) {
 	}
 	stop = func(ctx context.Context) error {
 		if err := s.Shutdown(ctx); err != nil {
-			return herrors.Wrap(err, herrors.Internal, err.Error())
+			return derrors.Wrap(err, derrors.Internal, err.Error())
 		}
 		log.Printf("finish serve.")
 		return nil

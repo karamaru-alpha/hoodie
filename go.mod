@@ -1,4 +1,4 @@
-module github.com/karamaru-alpha/hoodie
+module github.com/karamaru-alpha/days
 
 go 1.22.3
 

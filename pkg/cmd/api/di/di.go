@@ -5,8 +5,8 @@ import (
 
 	"go.uber.org/fx"
 
-	api_config "github.com/karamaru-alpha/hoodie/config/api"
-	"github.com/karamaru-alpha/hoodie/pkg/cmd/api"
+	api_config "github.com/karamaru-alpha/days/config/api"
+	"github.com/karamaru-alpha/days/pkg/cmd/api"
 )
 
 func Initialize() fx.Option {

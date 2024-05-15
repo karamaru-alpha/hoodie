@@ -1,4 +1,4 @@
-package herrors
+package derrors
 
 import (
 	"net/http"

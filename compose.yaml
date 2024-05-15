@@ -1,21 +1,12 @@
 version: "3.8"
 
 services:
-  api:
-    build:
-      context: .
-      dockerfile: build/api.Dockerfile
-      args:
-        - GO_VERSION=${GO_VERSION}
-    working_dir: /usr/src/hoodie
-    volumes:
-      - ./:/usr/src/hoodie
   buf:
     build:
       context: .
       dockerfile: build/buf.Dockerfile
       args:
         - GO_VERSION=${GO_VERSION}
-    working_dir: /usr/src/hoodie
+    working_dir: /usr/src/days
     volumes:
-      - ./:/usr/src/hoodie
+      - ./:/usr/src/days
