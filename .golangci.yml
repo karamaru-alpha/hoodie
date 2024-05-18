@@ -13,6 +13,7 @@ linters:
     - staticcheck
     - unused
     # Disabled by default
+    - copyloopvar
     - exhaustive
     - gofmt
     - gocritic

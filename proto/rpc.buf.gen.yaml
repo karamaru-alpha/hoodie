@@ -1,8 +1,8 @@
 version: v1
 plugins:
   - name: go
-    out: .
+    out: ..
     opt: module=github.com/karamaru-alpha/days
   - name: connect-go
-    out: .
+    out: ..
     opt: module=github.com/karamaru-alpha/days

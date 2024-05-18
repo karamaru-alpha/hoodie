@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package entity.transaction;
+
+import "options/entity/entity.proto";
+
+option go_package = "github.com/karamaru-alpha/days/pkg/domain/entity/transaction";
+
+message User {
+  // UserID
+  string user_id = 1 [
+    (options.entity.field) = {
+      schema: {pk: true}
+    }
+  ];
+
+  // Name
+  string name = 2;
+}
