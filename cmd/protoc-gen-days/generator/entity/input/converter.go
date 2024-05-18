@@ -27,7 +27,6 @@ func ConvertMessageFromProto(file *protogen.File, flagKindSet core.FlagKindSet) 
 	}
 
 	for _, field := range message.Fields {
-
 		var typeName string
 		var isEnum bool
 		var isList bool

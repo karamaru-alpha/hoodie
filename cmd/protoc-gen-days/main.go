@@ -50,6 +50,8 @@ func createGeneratorMap(plugin *protogen.Plugin) map[core.FlagKind]core.Generato
 		switch core.FlagKind(strings.Split(param, "=")[0]) {
 		case core.FlagKindGenEntity:
 			flagKindSet.Add(core.FlagKindGenEntity)
+		default:
+			// do nothing
 		}
 	}
 	generatorMap := make(map[core.FlagKind]core.Generator, flagKindSet.Size())
