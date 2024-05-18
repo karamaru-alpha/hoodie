@@ -7,6 +7,7 @@ import (
 
 	api_config "github.com/karamaru-alpha/days/config/api"
 	"github.com/karamaru-alpha/days/pkg/cmd/api"
+	"github.com/karamaru-alpha/days/pkg/infra/spanner"
 )
 
 func Initialize() fx.Option {
@@ -25,6 +26,8 @@ func basicOption() fx.Option {
 			api_config.New,
 			newHandlerOption,
 			newServeMux,
+			spanner.New,
+			spanner.NewTxManager,
 		),
 		handlerSet,
 	)

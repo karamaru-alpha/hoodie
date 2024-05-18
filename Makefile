@@ -13,8 +13,13 @@ install:
 image-rebuild:
 	docker compose build $(target)
 
+
+.PHONY: run-db
+run-db:
+	docker compose up --build -d spanner-emulator
+
 .PHONY: run-api
-run-api:
+run-api: run-db
 	go run cmd/api/main.go
 
 .PHONY: buf-gen
