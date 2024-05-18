@@ -17,7 +17,7 @@ updates:
         patterns:
           - "*"
   - package-ecosystem: docker
-    directory: build/docker
+    directory: build
     schedule:
       interval: "weekly"
     groups:
