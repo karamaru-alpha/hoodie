@@ -6,7 +6,14 @@ lint:
   use:
     - DEFAULT
   except:
+    - ENUM_VALUE_PREFIX
+    - ENUM_ZERO_VALUE_SUFFIX
     - PACKAGE_VERSION_SUFFIX
     - SERVICE_SUFFIX
+  ignore_only:
+    DIRECTORY_SAME_PACKAGE:
+      - enums
+    PACKAGE_DIRECTORY_MATCH:
+      - enums
   rpc_allow_google_protobuf_empty_requests: true
   rpc_allow_google_protobuf_empty_responses: true
