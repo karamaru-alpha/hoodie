@@ -13,7 +13,6 @@ install:
 image-rebuild:
 	docker compose build $(target)
 
-
 .PHONY: run-db
 run-db:
 	docker compose up --build -d spanner-emulator
