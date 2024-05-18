@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package options.entity;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/karamaru-alpha/days/pkg/pb/options/entity";
+
+message FieldOption {
+  message Schema {
+    bool pk = 1;
+  }
+
+  Schema schema = 1;
+}
+
+extend google.protobuf.FieldOptions {
+  FieldOption field = 50010;
+}

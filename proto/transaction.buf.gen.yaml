@@ -1,0 +1,8 @@
+version: v1
+plugins:
+  - name: days
+    out: ..
+    opt:
+      - gen_entity
+      - direct_generation_mode
+      - output_dir=..
