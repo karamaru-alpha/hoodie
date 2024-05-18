@@ -62,6 +62,22 @@ func ToSnakeCase(str string) string {
 	return result
 }
 
+var toUpperSnakeCaseCache = newMapString()
+
+// ToUpperSnakeCase
+//
+//	userIDs -> USER_IDS
+func ToUpperSnakeCase(str string) string {
+	if v, ok := toUpperSnakeCaseCache.Load(str); ok {
+		return v
+	}
+
+	result := strings.ToUpper(ToSnakeCase(str))
+
+	toUpperSnakeCaseCache.Store(str, result)
+	return result
+}
+
 var toGolangCamelCaseCache = newMapString()
 
 // ToGolangCamelCase

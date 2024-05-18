@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package enums.error_code;
+
+option go_package = "github.com/karamaru-alpha/days/pkg/domain/enum";
+
+// error code
+enum ErrorCode {
+  UNKNOWN = 0;
+  // InvalidArgument
+  INVALID_ARGUMENT = 1;
+  // InternalServerError
+  INTERNAL = 2;
+}

@@ -1,0 +1,11 @@
+version: v1
+plugins:
+  - name: go
+    out: ..
+    opt: module=github.com/karamaru-alpha/days
+  - name: days
+    out: ..
+    opt:
+      - gen_enum
+      - direct_generation_mode
+      - output_dir=..

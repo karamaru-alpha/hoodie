@@ -29,3 +29,20 @@ func CreateEachTemplate[T any](messages []T, creators []EachTemplateCreator[T]) 
 	}
 	return genFiles, nil
 }
+
+func CreateBulkTemplate[T any](pkgMap map[string][]T, creators []BulkTemplateCreator[T]) ([]GenFile, error) {
+	genFiles := make([]GenFile, 0, len(pkgMap)*len(creators))
+	for pkgName, messages := range pkgMap {
+		for _, creator := range creators {
+			info, err := creator.Create(pkgName, messages)
+			if err != nil {
+				return nil, err
+			}
+			if info == nil {
+				continue
+			}
+			genFiles = append(genFiles, NewGenFile(info.FilePath, info.Data))
+		}
+	}
+	return genFiles, nil
+}
