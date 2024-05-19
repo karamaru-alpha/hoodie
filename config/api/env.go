@@ -1,7 +1,6 @@
 package api
 
 import (
-	"log/slog"
 	"os"
 
 	"github.com/karamaru-alpha/days/pkg/derrors"
@@ -22,8 +21,5 @@ func New() (*config.APIConfig, error) {
 	if err := envconfig.Load(cfg); err != nil {
 		return nil, derrors.Wrap(err, derrors.Internal, "fail to load env")
 	}
-
-	slog.Info(cfg.Port)
-
 	return cfg, nil
 }
