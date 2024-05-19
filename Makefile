@@ -9,12 +9,10 @@ install:
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.58.0
 	go install github.com/cloudspannerecosystem/spanner-cli@v0.10.1
 
-
 # e.g.) make image-build target=buf
 .PHONY: image-rebuild
 image-rebuild:
 	docker compose build $(target)
-
 
 .PHONY: run-db
 run-db:
