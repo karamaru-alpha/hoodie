@@ -7,6 +7,12 @@ const (
 	GoTypeBool    = "bool"
 	GoTypeString  = "string"
 	GoTypeBytes   = "[]byte"
+	GoTypeTime    = "time.Time"
+)
+
+const (
+	CreatedTimeGoName = "CreatedTime"
+	UpdatedTimeGoName = "UpdatedTime"
 )
 
 type ValidateOption struct {
@@ -40,6 +46,7 @@ type Message struct {
 	SnakeName   string
 	Comment     string
 	Fields      []*Field
+	Indexes     []*Index
 }
 
 func (m *Message) GetPkgName() string {

@@ -7,6 +7,7 @@ require (
 	connectrpc.com/connect v1.16.2
 	github.com/Masterminds/sprig/v3 v3.2.3
 	github.com/huandu/xstrings v1.4.0
+	github.com/scylladb/go-set v1.0.2
 	go.uber.org/fx v1.21.1
 	golang.org/x/net v0.25.0
 	golang.org/x/sync v0.7.0

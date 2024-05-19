@@ -143,6 +143,26 @@ func ToGolangPascalCase(str string) string {
 
 var toPkgNameCache = newMapString()
 
+var toLocalNameCache = newMapString()
+
+// ToLocalName
+//
+//	user_id -> userID
+//	type -> typ
+func ToLocalName(str string) string {
+	if v, ok := toLocalNameCache.Load(str); ok {
+		return v
+	}
+
+	result := ToGolangCamelCase(str)
+	if result == "type" {
+		result = "typ"
+	}
+
+	toLocalNameCache.Store(str, result)
+	return result
+}
+
 // ToPkgName
 //
 //	pkg/domain/entity/admin -> admin

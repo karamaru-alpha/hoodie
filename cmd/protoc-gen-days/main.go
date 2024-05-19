@@ -12,6 +12,7 @@ import (
 	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/core"
 	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/generator/entity"
 	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/generator/enum"
+	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/generator/spanner"
 )
 
 func main() {
@@ -53,8 +54,8 @@ func createGeneratorMap(plugin *protogen.Plugin) map[core.FlagKind]core.Generato
 			flagKindSet.Add(core.FlagKindGenEntity)
 		case core.FlagKindGenEnum:
 			flagKindSet.Add(core.FlagKindGenEnum)
-		default:
-			// do nothing
+		case core.FlagKindGenSpanner:
+			flagKindSet.Add(core.FlagKindGenSpanner)
 		}
 	}
 	generatorMap := make(map[core.FlagKind]core.Generator, flagKindSet.Size())
@@ -63,6 +64,9 @@ func createGeneratorMap(plugin *protogen.Plugin) map[core.FlagKind]core.Generato
 	}
 	if flagKindSet.Has(core.FlagKindGenEnum) {
 		generatorMap[core.FlagKindGenEnum] = enum.NewGenerator(plugin)
+	}
+	if flagKindSet.Has(core.FlagKindGenSpanner) {
+		generatorMap[core.FlagKindGenSpanner] = spanner.NewGenerator(plugin)
 	}
 
 	return generatorMap

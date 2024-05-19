@@ -1,0 +1,37 @@
+// NOTE: this is example file
+syntax = "proto3";
+
+package entity.transaction;
+
+import "options/entity/entity.proto";
+
+option go_package = "github.com/karamaru-alpha/days/pkg/domain/entity/transaction";
+
+// UserExample
+message UserExample {
+  option (options.entity.message) = {
+    schema: {
+      interleave: {parent: "User"}
+      indexes: [
+        {
+          keys: [
+            {
+              column: "example",
+              desc: true
+            }
+          ],
+        }
+      ]
+    }
+  };
+
+  // UserID
+  string user_id = 1 [(options.entity.field) = {
+    schema: {pk: true}
+  }];
+
+  // Example
+  int64 example = 2 [(options.entity.field) = {
+    schema: {pk: true}
+  }];
+}

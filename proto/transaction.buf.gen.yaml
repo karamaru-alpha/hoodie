@@ -4,5 +4,6 @@ plugins:
     out: ..
     opt:
       - gen_entity
+      - gen_spanner
       - direct_generation_mode
       - output_dir=..

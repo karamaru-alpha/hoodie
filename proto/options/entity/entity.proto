@@ -6,14 +6,46 @@ import "google/protobuf/descriptor.proto";
 
 option go_package = "github.com/karamaru-alpha/days/pkg/pb/options/entity";
 
-message FieldOption {
+message MessageOption {
   message Schema {
-    bool pk = 1;
-  }
+    message Index {
+      message Key {
+        string column = 1;
+        bool desc = 2;
+      }
+      repeated Key keys = 1;
+      bool unique = 2;
+      bool null_filtered = 3;
+      repeated string storing = 4;
+    }
+    repeated Index indexes = 1;
 
+    message Interleave {
+      string parent = 1;
+    }
+    Interleave interleave = 2;
+
+    message TTL {
+      string timestamp_column = 1;
+      int32 days = 2;
+    }
+    TTL ttl = 3;
+  }
   Schema schema = 1;
 }
 
+message FieldOption {
+  message Schema {
+    bool pk = 1;
+    bool desc = 2;
+  }
+  Schema schema = 1;
+}
+
+extend google.protobuf.MessageOptions {
+  MessageOption message = 50040;
+}
+
 extend google.protobuf.FieldOptions {
-  FieldOption field = 50010;
+  FieldOption field = 500440;
 }

@@ -1,3 +1,4 @@
+// NOTE: this is example file
 syntax = "proto3";
 
 package rpc.api;
