@@ -53,14 +53,14 @@ func cmd() code {
 }
 
 func syncSpannerSchema(ctx context.Context, projectID, instance, db, ddlFilePath, target string) error {
-	slog.Info(fmt.Sprintf("[Spanner (%s)] start to sync.", target))
+	slog.Info(fmt.Sprintf("[Spanner (%s)] start to sync", target))
 
 	diff, err := database.DiffSpanner(ctx, projectID, instance, db, ddlFilePath)
 	if err != nil {
 		return err
 	}
 	if diff == "" {
-		slog.Info(fmt.Sprintf("[Spanner (%s)] no changes.", target))
+		slog.Info(fmt.Sprintf("[Spanner (%s)] no changes", target))
 		return nil
 	}
 
@@ -74,7 +74,7 @@ func syncSpannerSchema(ctx context.Context, projectID, instance, db, ddlFilePath
 		validStatements = append(validStatements, statement)
 	}
 	if len(validStatements) == 0 {
-		slog.Info(fmt.Sprintf("[Spanner (%s)] no changes.", target))
+		slog.Info(fmt.Sprintf("[Spanner (%s)] no changes", target))
 		return nil
 	}
 
@@ -96,7 +96,7 @@ func syncSpannerSchema(ctx context.Context, projectID, instance, db, ddlFilePath
 		return err
 	}
 
-	slog.Info(fmt.Sprintf("[Spanner (%s)] finished to sync.", target))
+	slog.Info(fmt.Sprintf("[Spanner (%s)] finished to sync", target))
 	return nil
 }
 
