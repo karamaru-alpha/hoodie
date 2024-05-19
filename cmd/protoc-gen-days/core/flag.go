@@ -4,8 +4,9 @@ type FlagKind string
 type FlagKindSet map[FlagKind]struct{}
 
 const (
-	FlagKindGenEntity FlagKind = "gen_entity"
-	FlagKindGenEnum   FlagKind = "gen_enum"
+	FlagKindGenEntity  FlagKind = "gen_entity"
+	FlagKindGenEnum    FlagKind = "gen_enum"
+	FlagKindGenSpanner FlagKind = "gen_spanner"
 )
 
 func (s FlagKindSet) Add(kind FlagKind) {

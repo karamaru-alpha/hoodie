@@ -1,0 +1,16 @@
+CREATE TABLE User (
+  UserID STRING(MAX) NOT NULL,
+  Name STRING(MAX),
+  CreatedTime TIMESTAMP,
+  UpdatedTime TIMESTAMP,
+) PRIMARY KEY (UserID);
+
+CREATE TABLE UserExample (
+  UserID STRING(MAX) NOT NULL,
+  Example INT64 NOT NULL,
+  CreatedTime TIMESTAMP,
+  UpdatedTime TIMESTAMP,
+) PRIMARY KEY (UserID, Example),
+  INTERLEAVE IN PARENT User ON DELETE CASCADE;
+CREATE INDEX IdxUserExampleByExample ON UserExample(Example DESC);
+

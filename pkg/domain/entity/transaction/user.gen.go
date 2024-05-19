@@ -3,12 +3,58 @@
 
 package transaction
 
-// User
+import (
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/karamaru-alpha/days/pkg/domain/dto"
+)
+
+const (
+	UserTableName = "User"
+	UserComment   = "User"
+
+	UserColumnName_UserID      = "userID"
+	UserColumnName_Name        = "name"
+	UserColumnName_CreatedTime = "createdTime"
+	UserColumnName_UpdatedTime = "updatedTime"
+)
+
+// User User
 type User struct {
 	// UserID
 	UserID string `json:"userID,omitempty"`
 	// Name
 	Name string `json:"name,omitempty"`
+	// CreatedTime
+	CreatedTime time.Time `json:"createdTime,omitempty"`
+	// UpdatedTime
+	UpdatedTime time.Time `json:"updatedTime,omitempty"`
+}
+
+func (e *User) GetPK() *UserPK {
+	return &UserPK{
+		UserID: e.UserID,
+	}
+}
+
+func (e *User) FullDeepCopy() *User {
+	return &User{
+		UserID:      e.UserID,
+		Name:        e.Name,
+		CreatedTime: e.CreatedTime,
+		UpdatedTime: e.UpdatedTime,
+	}
+}
+
+func (e *User) ToKeyValue() map[string]any {
+	return map[string]any{
+		UserColumnName_UserID:      e.UserID,
+		UserColumnName_Name:        e.Name,
+		UserColumnName_CreatedTime: e.CreatedTime,
+		UserColumnName_UpdatedTime: e.UpdatedTime,
+	}
 }
 
 type UserSlice []*User
@@ -27,10 +73,60 @@ type UserPK struct {
 	UserID string
 }
 
+func (e *UserPK) Key() string {
+	return strings.Join([]string{
+		fmt.Sprint(e.UserID),
+	}, ".")
+}
+
+func (e *UserPK) Generate() []any {
+	return []any{
+		e.UserID,
+	}
+}
+
 type UserPKs []*UserPK
 
 func (e *UserPK) ToEntity() *User {
 	return &User{
 		UserID: e.UserID,
 	}
+}
+
+var UserColumnMap = map[string]*dto.Column{
+	UserColumnName_UserID: {
+		Name:    UserColumnName_UserID,
+		Type:    "string",
+		IsList:  false,
+		PK:      true,
+		Comment: "UserID",
+	},
+	UserColumnName_Name: {
+		Name:    UserColumnName_Name,
+		Type:    "string",
+		IsList:  false,
+		PK:      false,
+		Comment: "Name",
+	},
+	UserColumnName_CreatedTime: {
+		Name:    UserColumnName_CreatedTime,
+		Type:    "time.Time",
+		IsList:  false,
+		PK:      false,
+		Comment: "CreatedTime",
+	},
+	UserColumnName_UpdatedTime: {
+		Name:    UserColumnName_UpdatedTime,
+		Type:    "time.Time",
+		IsList:  false,
+		PK:      false,
+		Comment: "UpdatedTime",
+	},
+}
+
+var UserColumns = dto.Columns{
+	UserColumnMap[UserColumnName_UserID],
+	UserColumnMap[UserColumnName_Name],
+	UserColumnMap[UserColumnName_CreatedTime],
+	UserColumnMap[UserColumnName_UpdatedTime],
 }

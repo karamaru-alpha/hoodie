@@ -20,7 +20,10 @@ type txManager struct {
 
 func (m *txManager) Transaction(ctx context.Context, f func(context.Context, database.RWTx) error) error {
 	if _, err := m.client.ReadWriteTransaction(ctx, func(ctx context.Context, spannerRWTx *spanner.ReadWriteTransaction) error {
-		return f(ctx, &rwTx{spannerRWTx})
+		if err := f(ctx, &rwTx{spannerRWTx}); err != nil {
+			return err
+		}
+		return bufferWrite(ctx, spannerRWTx)
 	}); err != nil {
 		return err
 	}

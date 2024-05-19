@@ -1,8 +1,6 @@
 package input
 
 import (
-	"fmt"
-
 	"google.golang.org/protobuf/compiler/protogen"
 
 	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/core"
@@ -11,7 +9,9 @@ import (
 
 func ConvertMessageFromProto(file *protogen.File, _ core.FlagKindSet) (*Enum, error) {
 	if len(file.Enums) != 1 {
-		return nil, perrors.New(fmt.Sprintf("このprotoファイルはEnumの定義数を1にする必要があります。 file = %v", file.Desc.FullName()))
+		return nil, perrors.New("this file should define only one enum").SetValues(map[string]any{
+			"file": file.Desc.FullName(),
+		})
 	}
 
 	enum := file.Enums[0]
