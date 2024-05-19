@@ -4,7 +4,7 @@ services:
   spanner-emulator:
     build:
       context: .
-      dockerfile: build/docker/cloud-spanner-emulator.Dockerfile
+      dockerfile: build/cloud-spanner-emulator.Dockerfile
     ports:
       - 127.0.0.1:${SPANNER_PORT}:9010
   buf:
@@ -16,3 +16,7 @@ services:
     working_dir: /usr/src/days
     volumes:
       - ./:/usr/src/days
+  gcloud:
+    build:
+      context: .
+      dockerfile: build/google-cloud-sdk.Dockerfile

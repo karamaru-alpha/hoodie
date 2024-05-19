@@ -12,6 +12,7 @@ import (
 	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/core"
 	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/generator/entity"
 	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/generator/enum"
+	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/generator/rpc"
 	"github.com/karamaru-alpha/days/cmd/protoc-gen-days/generator/spanner"
 )
 
@@ -41,7 +42,7 @@ func main() {
 	})
 
 	endTime := time.Now()
-	slog.Info(fmt.Sprintf("protoc-gen-days end, elapsed: %s", endTime.Sub(startTime).String()))
+	slog.Info("protoc-gen-days end", "elapsed", endTime.Sub(startTime).String())
 }
 
 func createGeneratorMap(plugin *protogen.Plugin) map[core.FlagKind]core.Generator {
@@ -56,6 +57,8 @@ func createGeneratorMap(plugin *protogen.Plugin) map[core.FlagKind]core.Generato
 			flagKindSet.Add(core.FlagKindGenEnum)
 		case core.FlagKindGenSpanner:
 			flagKindSet.Add(core.FlagKindGenSpanner)
+		case core.FlagKindGenRPC:
+			flagKindSet.Add(core.FlagKindGenRPC)
 		}
 	}
 	generatorMap := make(map[core.FlagKind]core.Generator, flagKindSet.Size())
@@ -67,6 +70,9 @@ func createGeneratorMap(plugin *protogen.Plugin) map[core.FlagKind]core.Generato
 	}
 	if flagKindSet.Has(core.FlagKindGenSpanner) {
 		generatorMap[core.FlagKindGenSpanner] = spanner.NewGenerator(plugin)
+	}
+	if flagKindSet.Has(core.FlagKindGenRPC) {
+		generatorMap[core.FlagKindGenRPC] = rpc.NewGenerator(plugin)
 	}
 
 	return generatorMap

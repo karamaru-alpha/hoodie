@@ -35,7 +35,7 @@ func (g *generatorBuilder) Generate(ctx context.Context) error {
 
 	for _, generator := range g.generators {
 		startTime := time.Now()
-		slog.Info(fmt.Sprintf("%T build start", generator))
+		slog.InfoContext(ctx, fmt.Sprintf("%T build start", generator))
 
 		pg.Go(ctx, func(ctx context.Context) error {
 			genFiles, err := generator.Build()
@@ -44,16 +44,16 @@ func (g *generatorBuilder) Generate(ctx context.Context) error {
 			}
 			generator.SetGenFiles(genFiles)
 
-			slog.Info(fmt.Sprintf(" %T build end, elapsed: %s", generator, time.Since(startTime).String()))
+			slog.InfoContext(ctx, fmt.Sprintf(" %T build end, elapsed: %s", generator, time.Since(startTime).String()))
 			if err := generator.Format(ctx); err != nil {
 				return err
 			}
-			slog.Info(fmt.Sprintf(" %T format end, elapsed: %s", generator, time.Since(startTime).String()))
+			slog.InfoContext(ctx, fmt.Sprintf(" %T format end, elapsed: %s", generator, time.Since(startTime).String()))
 
 			if err := generator.Generate(ctx); err != nil {
 				return err
 			}
-			slog.Info(fmt.Sprintf(" %T generate end, elapsed: %s", generator, time.Since(startTime).String()))
+			slog.InfoContext(ctx, fmt.Sprintf(" %T generate end, elapsed: %s", generator, time.Since(startTime).String()))
 
 			return nil
 		})

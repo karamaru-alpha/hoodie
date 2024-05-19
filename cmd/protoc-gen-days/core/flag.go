@@ -7,6 +7,7 @@ const (
 	FlagKindGenEntity  FlagKind = "gen_entity"
 	FlagKindGenEnum    FlagKind = "gen_enum"
 	FlagKindGenSpanner FlagKind = "gen_spanner"
+	FlagKindGenRPC     FlagKind = "gen_rpc"
 )
 
 func (s FlagKindSet) Add(kind FlagKind) {

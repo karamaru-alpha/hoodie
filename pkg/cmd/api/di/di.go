@@ -1,19 +1,23 @@
 package di
 
 import (
+	"context"
 	"net/http"
 
 	"go.uber.org/fx"
 
 	api_config "github.com/karamaru-alpha/days/config/api"
 	"github.com/karamaru-alpha/days/pkg/cmd/api"
-	"github.com/karamaru-alpha/days/pkg/infra/spanner"
+	"github.com/karamaru-alpha/days/pkg/di"
+	"github.com/karamaru-alpha/days/pkg/domain/config"
 )
 
 func Initialize() fx.Option {
 	return fx.Options(
 		// DI
 		basicOption(),
+		// External DI (mocked in testing)
+		externalOption(),
 		// Hooks
 		hooks(),
 	)
@@ -22,14 +26,30 @@ func Initialize() fx.Option {
 func basicOption() fx.Option {
 	return fx.Options(
 		fx.Provide(
+			context.Background,
+			// alphabetically
 			api.NewServer,
-			api_config.New,
+			di.NewDBTransactionTxManager,
 			newHandlerOption,
 			newServeMux,
-			spanner.New,
-			spanner.NewTxManager,
+			func(cfg *config.APIConfig) di.SpannerConfig {
+				return cfg
+			},
 		),
+		// alphabetically
+		di.TransactionRepositorySet,
 		handlerSet,
+		serviceSet,
+		usecaseSet,
+	)
+}
+
+func externalOption() fx.Option {
+	return fx.Options(
+		fx.Provide(
+			api_config.New,
+			di.NewTransactionClient,
+		),
 	)
 }
 

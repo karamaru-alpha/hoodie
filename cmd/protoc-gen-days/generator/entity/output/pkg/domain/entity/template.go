@@ -3,7 +3,6 @@ package entity
 import (
 	"bytes"
 	_ "embed"
-	"log/slog"
 	"strings"
 	"text/template"
 
@@ -118,8 +117,6 @@ func (c *typesCreator) Create(message *input.Message) (*core.TemplateInfo, error
 	if err := c.tpl.Execute(buf, data); err != nil {
 		return nil, perrors.New(err.Error())
 	}
-
-	slog.Info(strings.Join([]string{message.FileDirName, message.SnakeName + ".gen.go"}, "/"))
 
 	return &core.TemplateInfo{
 		Data:     buf.Bytes(),

@@ -5,6 +5,7 @@ import (
 
 	"cloud.google.com/go/spanner"
 
+	"github.com/karamaru-alpha/days/pkg/dcontext"
 	"github.com/karamaru-alpha/days/pkg/domain/database"
 )
 
@@ -20,6 +21,7 @@ type txManager struct {
 
 func (m *txManager) Transaction(ctx context.Context, f func(context.Context, database.RWTx) error) error {
 	if _, err := m.client.ReadWriteTransaction(ctx, func(ctx context.Context, spannerRWTx *spanner.ReadWriteTransaction) error {
+		ctx = dcontext.SetQueryCacheInContext(ctx, dcontext.NewQueryCache())
 		if err := f(ctx, &rwTx{spannerRWTx}); err != nil {
 			return err
 		}

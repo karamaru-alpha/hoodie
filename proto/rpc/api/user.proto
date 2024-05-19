@@ -1,16 +1,17 @@
-// NOTE: this is example file
 syntax = "proto3";
 
 package rpc.api;
 
 import "google/protobuf/empty.proto";
+import "validate/validate.proto";
 
 option go_package = "github.com/karamaru-alpha/days/pkg/pb/rpc/api";
 
-service Example {
-  rpc Ping(google.protobuf.Empty) returns (ExamplePingResponse) {}
+service User {
+  rpc UpdateName(UserUpdateNameRequest) returns (google.protobuf.Empty) {}
 }
 
-message ExamplePingResponse {
-  string message = 1;
+message UserUpdateNameRequest {
+  // Name
+  string name = 1 [(validate.rules).string.min_bytes = 1];
 }
