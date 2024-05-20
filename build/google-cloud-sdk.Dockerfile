@@ -1,1 +1,1 @@
-FROM google/cloud-sdk:475.0.0-slim
+FROM google/cloud-sdk:476.0.0-slim
