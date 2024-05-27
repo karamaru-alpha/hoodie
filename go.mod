@@ -3,7 +3,7 @@ module github.com/karamaru-alpha/days
 go 1.22.3
 
 require (
-	cloud.google.com/go/spanner v1.62.0
+	cloud.google.com/go/spanner v1.63.0
 	connectrpc.com/connect v1.16.2
 	github.com/Masterminds/sprig/v3 v3.2.3
 	github.com/envoyproxy/protoc-gen-validate v1.0.4
@@ -19,7 +19,7 @@ require (
 )
 
 require (
-	cloud.google.com/go v0.113.0 // indirect
+	cloud.google.com/go v0.114.0 // indirect
 	cloud.google.com/go/auth v0.4.1 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.2 // indirect
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect
