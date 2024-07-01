@@ -15,7 +15,7 @@ COPY cmd/db-schema-sync cmd/db-schema-sync
 RUN CGO_ENABLED=0 go build -o db-schema-sync -trimpath -ldflags '-s -w' cmd/db-schema-sync/main.go
 
 # ==== build docker image ====
-FROM alpine:3.20.0
+FROM alpine:3.20.1
 
 WORKDIR /usr/src/days
 
